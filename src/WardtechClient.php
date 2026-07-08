@@ -29,7 +29,7 @@ class WardtechClient
     public function ping(): Response
     {
         return $this->request()
-            ->post('/ping')
+            ->post('/api/status-report/ping')
             ->throw();
     }
 
