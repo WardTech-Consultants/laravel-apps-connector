@@ -25,6 +25,20 @@ non-sensitive operational signals listed above.
 
 ## Installation
 
+This package is hosted on GitHub, not Packagist, so add it as a VCS repository
+in your application's `composer.json` first:
+
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/WardTech-Consultants/laravel-apps-connector.git"
+    }
+]
+```
+
+Then require it:
+
 ```bash
 composer require wardtech/laravel-connector
 ```
