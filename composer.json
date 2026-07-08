@@ -1,0 +1,43 @@
+{
+    "name": "wardtech/laravel-connector",
+    "description": "Reports Laravel application status (framework version, installed packages, queue health, migrations and environment posture) to the Wardtech central dashboard.",
+    "keywords": ["laravel", "monitoring", "status", "health", "wardtech"],
+    "homepage": "https://apps.wardtech.co.uk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wardtech"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/console": "^10.0|^11.0|^12.0",
+        "illuminate/http": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wardtech\\Connector\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wardtech\\Connector\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wardtech\\Connector\\WardtechServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
