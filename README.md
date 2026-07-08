@@ -43,6 +43,12 @@ Then require it:
 composer require wardtech/laravel-connector
 ```
 
+> If the repository is private, Composer needs a GitHub token to read it:
+> `composer config --global github-oauth.github.com <your-token>`.
+>
+> To track the unreleased `main` branch instead of a tagged release, require
+> `wardtech/laravel-connector:dev-main`.
+
 Publish the config (optional — sensible defaults ship with the package):
 
 ```bash
