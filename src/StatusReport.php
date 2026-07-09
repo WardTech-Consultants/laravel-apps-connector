@@ -7,6 +7,7 @@ use Wardtech\Connector\Collectors\ApplicationCollector;
 use Wardtech\Connector\Collectors\ComposerCollector;
 use Wardtech\Connector\Collectors\EnvironmentCollector;
 use Wardtech\Connector\Collectors\MigrationCollector;
+use Wardtech\Connector\Collectors\NodeCollector;
 use Wardtech\Connector\Collectors\QueueCollector;
 use Wardtech\Connector\Collectors\ScheduleCollector;
 use Wardtech\Connector\Collectors\ServerCollector;
@@ -27,6 +28,7 @@ class StatusReport implements Arrayable
         EnvironmentCollector::class,
         ServerCollector::class,
         ComposerCollector::class,
+        NodeCollector::class,
         QueueCollector::class,
         MigrationCollector::class,
         ScheduleCollector::class,
