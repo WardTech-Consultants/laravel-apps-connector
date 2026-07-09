@@ -93,10 +93,24 @@ class QueueCollector implements Collector
 
     /**
      * Number of jobs currently in the failed-jobs store.
+     *
+     * For the database failers we count at the database rather than through
+     * the failer's all(), which hydrates every row — including its full job
+     * payload and exception text — into memory and can exhaust the CLI memory
+     * limit once the table grows. Other failers fall back to all().
      */
     protected function failedJobs(): ?int
     {
         try {
+            $driver = config('queue.failed.driver', 'database-uuids');
+
+            if (in_array($driver, ['database', 'database-uuids'], true)) {
+                $db = DB::connection(config('queue.failed.database'));
+                $table = config('queue.failed.table', 'failed_jobs');
+
+                return (int) $db->table($table)->count();
+            }
+
             $failer = app('queue.failer');
 
             return $failer ? count($failer->all()) : null;
