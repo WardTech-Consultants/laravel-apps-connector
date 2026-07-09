@@ -32,10 +32,15 @@ in your application's `composer.json` first:
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://github.com/WardTech-Consultants/laravel-apps-connector.git"
+        "url": "https://github.com/WardTech-Consultants/laravel-apps-connector.git",
+        "no-api": true
     }
 ]
 ```
+
+> `"no-api": true` tells Composer to clone the repository over git directly
+> instead of going through the GitHub API. This bypasses GitHub's API rate
+> limits and works without an OAuth token for public repos.
 
 Then require it:
 
