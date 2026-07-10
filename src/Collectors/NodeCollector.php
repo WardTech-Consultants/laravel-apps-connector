@@ -31,7 +31,7 @@ class NodeCollector implements Collector
         // lockfile v2/v3: authoritative `packages` map keyed by install path.
         if (! empty($lock['packages'])) {
             return collect($lock['packages'])
-                ->reject(fn ($meta, $path) => $path === '' || ! str_contains($path, 'node_modules/'))
+                ->reject(fn ($meta, $path) => $path === '' || strpos($path, 'node_modules/') === false)
                 ->map(fn (array $meta, string $path) => [
                     'name' => substr($path, strrpos($path, 'node_modules/') + strlen('node_modules/')),
                     'version' => $meta['version'] ?? null,

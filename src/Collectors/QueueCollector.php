@@ -74,7 +74,7 @@ class QueueCollector implements Collector
                     ->map(fn ($count) => (int) $count)
                     ->all(),
             ];
-        } catch (\Throwable) {
+        } catch (\Throwable $e) {
             return null;
         }
     }
@@ -86,7 +86,7 @@ class QueueCollector implements Collector
     {
         try {
             return Queue::size();
-        } catch (\Throwable) {
+        } catch (\Throwable $e) {
             return null;
         }
     }
@@ -114,7 +114,7 @@ class QueueCollector implements Collector
             $failer = app('queue.failer');
 
             return $failer ? count($failer->all()) : null;
-        } catch (\Throwable) {
+        } catch (\Throwable $e) {
             return null;
         }
     }
