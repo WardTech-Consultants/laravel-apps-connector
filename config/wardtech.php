@@ -48,7 +48,7 @@ return [
     |
     */
 
-    'timeout' => (int) env('WARDTECH_TIMEOUT', 15),
+    'timeout' => (int) env('WARDTECH_TIMEOUT', 30),
 
     /*
     |--------------------------------------------------------------------------

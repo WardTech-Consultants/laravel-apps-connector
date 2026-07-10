@@ -35,6 +35,13 @@ class PingCommand extends Command
             return self::SUCCESS;
         }
 
+        // The server should send a scalar name, but guard against a non-string
+        // (e.g. a nested structure) so a successful ping never crashes on the
+        // string interpolation below.
+        if (! is_scalar($name)) {
+            $name = json_encode($name);
+        }
+
         $this->info("Connected to Wardtech as: {$name}");
 
         return self::SUCCESS;
