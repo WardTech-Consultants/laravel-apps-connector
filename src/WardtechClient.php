@@ -18,7 +18,7 @@ class WardtechClient
     public function report(array $payload): Response
     {
         return $this->request()
-            ->post('/api/status-report', $payload)
+            ->post($this->url('/api/status-report'), $payload)
             ->throw();
     }
 
@@ -29,7 +29,7 @@ class WardtechClient
     public function ping(): Response
     {
         return $this->request()
-            ->post('/api/status-report/ping')
+            ->post($this->url('/api/status-report/ping'))
             ->throw();
     }
 
@@ -38,7 +38,17 @@ class WardtechClient
         return Http::withToken(config('wardtech.token'))
             ->timeout((int) config('wardtech.timeout', 15))
             ->acceptJson()
-            ->asJson()
-            ->baseUrl(rtrim((string) config('wardtech.url'), '/'));
+            ->asJson();
+    }
+
+    /**
+     * Resolve an absolute URL from the configured base and a relative path.
+     *
+     * Built by hand rather than via PendingRequest::baseUrl() so the client
+     * works on Laravel 7, where that method does not yet exist.
+     */
+    protected function url(string $path): string
+    {
+        return rtrim((string) config('wardtech.url'), '/').'/'.ltrim($path, '/');
     }
 }
